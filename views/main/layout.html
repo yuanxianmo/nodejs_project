@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>袁贤谟个人博客</title>
+    <link href="/pulic/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="/pulic/fontAwesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <script src="/pulic/js/jquery-1.12.4.min.js"></script>
+    <script src="/pulic/js/index.js"></script>
+
+</head>
+<body>
+<header>
+    <div class="backing"><!--<img src="/pulic/images/background.jpg">--></div>
+</header>
+<nav>
+    <div class="menu">
+        {%if category == ''%}
+        <a href="/" class="focus">首页</a>
+        {%else%}
+        <a href="/">首页</a>
+        {%endif%}
+
+        {%for cate in categories%}
+        {%if category == cate.id%}
+        <a href="/?category={{cate.id}}" class="focus">{{cate.name}}</a>
+        {%else%}
+        <a href="/?category={{cate.id}}">{{cate.name}}</a>
+        {%endif%}
+        {%endfor%}
+    </div>
+</nav>
+<div class="clear main">
+    <div class="mainLeft">
+        {%block content%}{%endblock%}
+    </div>
+    <div class="mainRight">
+        {% if userInfo._id %}
+        <div class="rightBox" id="userInfo">
+            <div class="title"><span>用户信息</span></div>
+            <p><span class="colDark">{{userInfo.username}}</span></p>
+            {% if userInfo.isAdmin %}
+            <p><span class="colDanger">你好,管理员！</span><a href="/admin">进入管理</a></p>
+            {% else%}
+            <p><span class="colDanger">你好欢迎来到我的博客！</span></p>
+            {% endif %}
+
+            <p><span class="colDark"><a href="javascript:;" id="logoutBtn">退出</a></span></p>
+        </div>
+        {% else %}
+        <div class="rightBox" id="loginBox">
+            <div class="title"><span>登录</span></div>
+            <div class="line"><span class="colDark">用户名：</span><input name="username" type="text"><em></em></div>
+            <div class="line"><span class="colDark">密码：</span><input name="password" type="password"><em></em></div>
+            <div class="line"><span class="colDark"></span><button>登 录</button></div>
+            <p class="textRight">还没有注册？<a href="javascript:;" class="colMint">马上注册</a></p>
+            <p class="colWarning textCenter"></p>
+        </div>
+        <div class="rightBox" id="registerBox" style="display: none;">
+            <div class="title"><span>注册</span></div>
+            <div class="line"><span class="colDark">用户名：</span><input name="username" type="text"><em></em></div>
+            <div class="line"><span class="colDark">密码：</span><input name="password" type="password"><em></em></div>
+            <div class="line"><span class="colDark">确认：</span><input name="repassword" type="password"><em></em></div>
+            <div class="line"><span class="colDark"></span><button>注 册</button></div>
+            <p class="textRight">已经注册？<a href="javascript:;" class="colMint">马上登录</a></p>
+            <p class="colWarning textCenter"></p>
+        </div>
+        {%endif%}
+        <div class="rightBox">
+            <div class="title"><span>学习网站</span></div>
+            <p><a href="https://nodejs.org/api/" target="_blank" class="colDanger">Nodejs api</a></p>
+            <p><a href="http://www.expressjs.com.cn/guide/routing.html" target="_blank" class="colDanger">Express路由</a></p>
+            <p><a href="http://javascript.ruanyifeng.com/" target="_blank" class="colDanger">Javascript标准参考教程</a></p>
+            <p><a href="https://developer.mozilla.org/zh-CN/" target="_blank" class="colDanger">MDN Web文档</a></p>
+            <p><a href="http://jstherightway.org/zh-cn/" target="_blank" class="colDanger">JavaScript指南</a></p>
+            <p><a href="http://www.bootcss.com/" target="_blank" class="colDanger">bootstrap官网</a></p>
+            <p><a href="https://www.wikipedia.org/" target="_blank" class="colDanger">维基百科</a></p>
+            <p><a href="https://www.baidu.com/" target="_blank" class="colDanger">百度一下</a></p>
+            <p><a href="https://github.com/yuanxianmo" target="_blank" class="colDanger">个人github地址</a></p>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
